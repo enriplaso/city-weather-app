@@ -6,6 +6,10 @@ class City extends Coordinates {
         this.id = id
         this.name = name
     }
+
+    get city() { return {id: this.id, name: this.name} }
+
+    get coordinates() { return {longitude: this.longitude, latitude: this.latitude} }
 }
 
 export default City

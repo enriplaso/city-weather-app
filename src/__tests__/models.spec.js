@@ -21,4 +21,10 @@ describe('City and Coordinates', () => {
         expect(city.latitude).to.eql(49.4874592)
      });
 
+     it('City getter Should retun an object with id and name', () => {
+        expect(city.city.name).to.eql('Mannheim')
+        expect(city.city.id).to.eql(2873891)
+        expect(city.city.longitude).to.eql(undefined)
+     });
+     
 });

@@ -18,7 +18,11 @@ class CityController extends Events {
 
     init() {
         logger.info("Inizializing Cities...")
-        this._loadCities(this._citiesPath);
+        try {
+            this._loadCities(this._citiesPath)
+        }catch (err){
+            logger.error(err)
+        }
     }
 
     _loadCities(jsonFilePath) {
@@ -41,7 +45,7 @@ class CityController extends Events {
 
     getCitiesInRatio(latitude, longitud, ratioKm) {
         if(this._cities && this._cities.length > 0){
-
+            //TODO        
         }
     }
 

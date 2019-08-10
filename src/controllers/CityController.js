@@ -37,7 +37,11 @@ class CityController extends Events {
         });        
     }
 
-    getCity(id) {return this._cities.filter(city => city.id === id)[0].city}
+    getCity(id) {return this._cities.filter(city => city.id === id)[0]}
+
+    getCitiesInRatio(latitude, longitud, ratioKm) {
+
+    }
 
 }
 

@@ -37,12 +37,14 @@ describe('City Controller', () => {
         cityController._cities = citiesTransfomed;
         cityController._loadCities = sinon.spy(() => {cityController.emit(consts.EVENTS.LOADED)})
         cityController.on(consts.EVENTS.READY, () => {
-            expect( cityController.getCity(519188)).to.eql({"id":519188,"name":"Novinki","longitude":37.666668,"latitude":55.683334})
+            expect(cityController.getCity(519188)).to.eql({"id":519188,"name":"Novinki","longitude":37.666668,"latitude":55.683334})
             done()
         })
         cityController.init()
      });
-     it('Given the latitude and Longitude Should get list of cities in a 1 Km radius', (done) => {
+
+     
+     /*it('Given the latitude and Longitude Should get list of cities in a 1 Km radius', (done) => {
         const cityController = new CityController(cityFilePath);
         const citiesTransfomed = []
         cities.forEach( city => {
@@ -52,11 +54,11 @@ describe('City Controller', () => {
         cityController._loadCities = sinon.spy(() => {cityController.emit(consts.EVENTS.LOADED)})
         cityController.on(consts.EVENTS.READY, () => {
             expect(cityController.getCitiesInRatio(49.49132, 8.46050, 1))
-            .to.eql([{"id":2873891,"name":"Mannheim","lon":8.46472,"lat":49.488331}])
+            .to.eql([{"id":2873891,"name":"Mannheim"}])
             done()
         })
         cityController.init()
-     });
+     });*/
 
     /* it('Given the latitude and Longitude Should get list of cities in a 10 Km radius', (done) => {
         const cityController = new CityController(cityFilePath);

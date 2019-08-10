@@ -31,7 +31,6 @@ class CityController extends Events {
         fs.readFile(jsonFilePath, (err, data) => {
             if (err) throw err
             if(data && data.length) {
-                console.log(typeof data)
                 data = JSON.parse(data)
                 data.forEach( city => {
                     this._cities.push(new City(city.id, city.name, new Coordinates(city.lon, city.lat)))
@@ -46,7 +45,14 @@ class CityController extends Events {
     getCity(id) {return this._cities.filter(city => city.id === id)[0]}
 
     getCitiesInRatio(latitude, longitud, ratioKm) {
-        return this._cities.filter(city => islocationInRatio(latitude, longitud, city.latitude, city.longitude, ratioKm)) 
+        //return this._cities.filter(city => islocationInRatio(latitude, longitud, city.latitude, city.longitude, ratioKm)) 
+        const citiesInRatio = []
+        this._cities.forEach(city => {
+            if(islocationInRatio(latitude, longitud, city.latitude, city.longitude, ratioKm)){
+                citiesInRatio.push(city.city) //we don't send latitude and longitude
+            }
+        })
+        return citiesInRatio
     }
 
 }

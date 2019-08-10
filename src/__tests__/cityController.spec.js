@@ -53,7 +53,7 @@ describe('City Controller', () => {
         cityController._loadCities = sinon.spy(() => {cityController.emit(consts.EVENTS.LOADED)})
         cityController.on(consts.EVENTS.READY, () => {
             expect(cityController.getCitiesInRatio(49.49132, 8.46050, 1))
-            .to.eql([{"longitude":8.46472,"latitude":49.488331,"id":2873891,"name":"Mannheim"}])
+            .to.eql([{"id":2873891,"name":"Mannheim"}])
             expect(cityController.getCitiesInRatio(55.49132, 16.46050, 1))
             .to.eql([])
             done()
@@ -72,7 +72,7 @@ describe('City Controller', () => {
         cityController.on(consts.EVENTS.READY, () => {
             done()
             expect(cityController.getCitiesInRatio(49.49132, 8.46050, 10))
-            .to.eql([{"longitude":8.46472,"latitude":49.488331,"id":2873891,"name":"Mannheim"},{"longitude":8.484,"latitude":49.435101,"id":6555232,"name":"Altrip"},{"longitude":8.49472,"latitude":49.435558,"id":2956891,"name":"Altrip"}])
+            .to.eql([{"id":2873891,"name":"Mannheim"},{"id":6555232,"name":"Altrip"},{"id":2956891,"name":"Altrip"}])
         })
         cityController.init()
     })

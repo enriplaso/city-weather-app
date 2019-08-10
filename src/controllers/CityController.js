@@ -30,14 +30,13 @@ class CityController extends Events {
                     this.cities.push(new City(city.id, city.name, new Coordinates(city.longitud, city.latitude)))
                 })
             } else {
-                logger.Error("Data is not an array or is empty")
                 throw new Error("Data is not an array or is empty");
             }
             this.emit(consts.Event.LOADED)
-
-        });
-        
+        });        
     }
+
+    getCity(id) {return this._cities.filter(city => city.id == id)[0].city}
 
 }
 

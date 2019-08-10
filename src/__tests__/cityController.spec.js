@@ -26,5 +26,20 @@ describe('City Controller', () => {
         })
         cityController.init()
      });
+
+     it('Shoud get city Novinki and id 519188 hen getCity(519188) is called', (done) => {
+        const cityController = new CityController(cityFilePath);
+        const citiesTransfomed = []
+        cities.forEach( city => {
+            citiesTransfomed.push(new City(city.id, city.name, new Coordinates(city.longitud, city.latitude)))
+        })
+        cityController._cities = citiesTransfomed;
+        cityController._loadCities = sinon.spy(() => {cityController.emit(consts.EVENTS.LOADED)})
+        cityController.on(consts.EVENTS.READY, () => {
+            expect( cityController.getCity(519188)).to.eql({"id":519188,"name":"Novinki"})
+            done()
+        })
+        cityController.init()
+     });
      
 });

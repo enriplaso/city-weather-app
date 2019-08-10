@@ -2,6 +2,8 @@ import logger from '../util/logger'
 import consts from '../consts'
 import City from '../models/City'
 import Coordinates from '../models/Coordinates'
+import {islocationInRatio} from '../helper/coordCalcs'
+
 const Events = require('events');
 const fs = require('fs');
 
@@ -44,9 +46,7 @@ class CityController extends Events {
     getCity(id) {return this._cities.filter(city => city.id === id)[0]}
 
     getCitiesInRatio(latitude, longitud, ratioKm) {
-        if(this._cities && this._cities.length > 0){
-            //TODO        
-        }
+        return this._cities.filter(city => islocationInRatio(latitude, longitud, city.latitude, city.longitude, ratioKm)) 
     }
 
 }

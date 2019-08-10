@@ -1,5 +1,5 @@
  
- function islocationInRatio (lat1, lon1, lat2, lon2, ratioKm) {
+ function islocationInRatio(lat1, lon1, lat2, lon2, ratioKm) {
     if(lat1 === lat2 && lon1 === lon2) return true
     if(getDistanceInKmFromCoordinates(lat1, lon1, lat2, lon2) <= ratioKm ) return true
     return false

@@ -7,8 +7,13 @@ import {islocationInRatio} from '../helper/coordCalcs'
 const Events = require('events');
 const fs = require('fs');
 
+let instance = null;
+
 class CityController extends Events {
+    
     constructor(citiesPath) {
+        if(instance) return instance
+
         super()
         this._citiesPath = citiesPath
         this._cities = []
@@ -16,15 +21,13 @@ class CityController extends Events {
             logger.info("Cities loaded succesfully")
             this.emit(consts.EVENTS.READY)
         })
+                
+        instance = this;
     }
 
     init() {
         logger.info("Inizializing Cities...")
-        try {
-            this._loadCities(this._citiesPath)
-        }catch (err){
-            logger.error(err)
-        }
+        this._loadCities(this._citiesPath)
     }
 
     _loadCities(jsonFilePath) {
@@ -36,7 +39,7 @@ class CityController extends Events {
                     this._cities.push(new City(city.id, city.name, new Coordinates(city.lon, city.lat)))
                 })
             } else {
-                throw new Error("Data is not an array or is empty");
+                throw new Error("Cities Data is not an array or is empty");
             }
             this.emit(consts.EVENTS.LOADED)
         });        

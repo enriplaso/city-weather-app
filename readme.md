@@ -10,10 +10,10 @@ npm start
 ```
 npm test
 ```
-## Enpoints
+## Endpoints
 ### Get city by id
-Retunns: the city with name, latitud and longitude, 
 example: http://localhost:8080/cities/2834072
+return sample
 ```
 {
     "longitude": 8.56083,

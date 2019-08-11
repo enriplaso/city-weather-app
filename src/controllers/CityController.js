@@ -7,13 +7,8 @@ import {islocationInRatio} from '../helper/coordCalcs'
 const Events = require('events');
 const fs = require('fs');
 
-let instance = null;
-
 class CityController extends Events {
-    
     constructor(citiesPath) {
-        if(instance) return instance
-
         super()
         this._citiesPath = citiesPath
         this._cities = []
@@ -21,8 +16,6 @@ class CityController extends Events {
             logger.info("Cities loaded succesfully")
             this.emit(consts.EVENTS.READY)
         })
-                
-        instance = this;
     }
 
     init() {

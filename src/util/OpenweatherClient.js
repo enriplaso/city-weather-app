@@ -1,12 +1,22 @@
 import Weather from '../models/Weather'
 import logger from './logger'
+import request from "request";
 class OpenweatherClient {
   
-    static getWeatherByCityId(cityId) {
-
+    static getWeatherByCityId(cityId, domain, apiKey) {
+        const url = 'http://'+ domain + '/data/2.5/weather?id=' + cityId +'&appid='+ apiKey
+        return new Promise(function (resolve, reject) {
+            request(url, function (error, res, body) {
+              if (!error && res.statusCode == 200) {
+                resolve(body);
+              } else {
+                reject(error);
+              }
+            });
+        });
     }
 
-    static transForm(wheatherRawObject) {
+    static transform(wheatherRawObject) {
         let weather = null
         try{
             wheatherRawObject = JSON.parse(wheatherRawObject)

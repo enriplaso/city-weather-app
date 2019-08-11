@@ -7,7 +7,7 @@ describe('Weather Client test', () => {
     it('Transfor raw wheater dat to custom wheather data', () => {
         const weatherClient = new OpenweatherClient();
 
-        const transformedData = OpenweatherClient.transForm(wheaterRaw);
+        const transformedData = OpenweatherClient.transform(wheaterRaw);
         expect(transformedData).to.eql(
             {
                 "type": "Clouds",

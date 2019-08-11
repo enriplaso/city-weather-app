@@ -32,7 +32,7 @@ class CityController extends Events {
                     this._cities.push(new City(city.id, city.name, new Coordinates(city.lon, city.lat)))
                 })
             } else {
-                throw new Error("Cities Data is not an array or is empty");
+                throw new Error("Cities data is empty");
             }
             this.emit(consts.EVENTS.LOADED)
         });        

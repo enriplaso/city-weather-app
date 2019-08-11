@@ -9,8 +9,7 @@ class WeatherController {
 
     async getWeatherByCityId(cityId) {
         const rawWeatherData = await OpenewatherClient.getWeatherByCityId(cityId, this.domain, this.apiKey)
-        console.log(rawWeatherData)
-        return rawWeatherData;
+        return OpenewatherClient.transform(rawWeatherData)
     }
 
 }

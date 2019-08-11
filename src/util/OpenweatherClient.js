@@ -9,8 +9,10 @@ class OpenweatherClient {
             request(url, function (error, res, body) {
               if (!error && res.statusCode == 200) {
                 resolve(body);
-              } else {
+              } else if(error) {
                 reject(error);
+              } else  {
+                reject(res.statusCode)
               }
             });
         });
@@ -36,8 +38,8 @@ class OpenweatherClient {
                 weather.clouds_percent = wheatherRawObject.clouds.all
             }
             if(wheatherRawObject.sys){
-                weather.sunrise = new Date(wheatherRawObject.sys.sunrise).toISOString()	
-                weather.sunset = new Date(wheatherRawObject.sys.sunrise).toISOString()	
+                weather.sunrise = new Date(wheatherRawObject.sys.sunrise*1000).toISOString()	
+                weather.sunset = new Date(wheatherRawObject.sys.sunrise*1000).toISOString()	
             }
             if(wheatherRawObject.wind){
                 weather.wind_speed = wheatherRawObject.wind.speed
@@ -46,7 +48,7 @@ class OpenweatherClient {
         return weather
     }
 
-    static convert2Celsius(Fahrenheit_temp) {return (5/9) * (Fahrenheit_temp - 32) }
+    static convert2Celsius(kelvin_temp) {return kelvin_temp - 273.15 }
 }
 
 export default OpenweatherClient

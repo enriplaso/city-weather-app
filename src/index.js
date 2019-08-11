@@ -1,8 +1,8 @@
 import express from 'express'
 import logger from './util/logger'
 import routes from './routes'
-import {Router} from 'express'
-import 'dotenv/config';
+import Router from 'express'
+import 'dotenv/config'
 
 const router = Router();
 const app = express()

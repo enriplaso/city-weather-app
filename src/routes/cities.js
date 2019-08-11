@@ -3,9 +3,9 @@ import CityController from '../controllers/CityController'
 import HttpStatus  from 'http-status-codes'
 import httpErrors from '../error/httpErrors'
 import WeatherController from '../controllers/WeatherController'
-import 'dotenv/config';
+import 'dotenv/config'
 
-const path = require('path');
+const path = require('path')
 const cityFilePath = '../data/city.cleaned.list.json'
 const router = Router();
 const weatherController = new WeatherController(process.env.OPEN_WEATHER_DOMAIN, process.env.API_KEY)

@@ -7,10 +7,10 @@ import {islocationInRatio} from '../helper/coordCalcs'
 const Events = require('events');
 const fs = require('fs');
 
+//Singelton class
 class CityController extends Events {
-    constructor(citiesPath) {
+    constructor() {
         super()
-        this._citiesPath = citiesPath
         this._cities = []
         this.on(consts.EVENTS.LOADED, () => {
             logger.info("Cities loaded succesfully")
@@ -18,7 +18,8 @@ class CityController extends Events {
         })
     }
 
-    init() {
+    init(citiesPath) {
+        this._citiesPath = citiesPath
         logger.info("Inizializing Cities...")
         this._loadCities(this._citiesPath)
     }
@@ -53,4 +54,4 @@ class CityController extends Events {
 
 }
 
-export default CityController
+export default new CityController()

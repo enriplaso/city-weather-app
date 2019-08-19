@@ -9,19 +9,18 @@ const path = require('path')
 const cityFilePath = '../data/city.cleaned.list.json'
 const router = Router();
 const weatherController = new WeatherController(process.env.OPEN_WEATHER_DOMAIN, process.env.API_KEY)
-const cityController = new CityController(path.resolve(__dirname,cityFilePath))
-cityController.init()
+CityController.init(path.resolve(__dirname,cityFilePath))
 
 router.get('/', (req, res) => {
   if(req.query.lat && req.query.lng ) {
-    return res.status(HttpStatus.OK).send(cityController.getCitiesInRatio(req.query.lat, req.query.lng, 10))
+    return res.status(HttpStatus.OK).send(CityController.getCitiesInRatio(req.query.lat, req.query.lng, 10))
   }else {
     return  res.status(HttpStatus.BAD_REQUEST).send(httpErrors.HTTP_ERROR.BAD_REQUEST_PARAMS)
   }
 })
 
 router.get('/:city_id', (req, res) => {
-  const city = cityController.getCity(parseInt(req.params.city_id))
+  const city = CityController.getCity(parseInt(req.params.city_id))
   if(city) {
     return res.send(city)
   } else{
